@@ -11,7 +11,8 @@ Version 1.0+
 Production Began Dec 4, 2023 
 #>
 
-$url = "https://catfact.ninja/fact?limit=1"
+$url = "https://catfact.ninja/fact"
+<#
 Clear-Host
 Write-Host "Welcome to Cat Facts!"
 function generateFact() {
@@ -20,7 +21,8 @@ function generateFact() {
     $q1 = Read-Host "Generate Cat Fact? [Y/N]"
         if ($q1 -eq "Y" -or $q1 -eq "y" ) {
             Clear-Host
-            Invoke-RestMethod -Uri $url -Method Get
+            $factList = @(Invoke-RestMethod -Uri $url -Method Get)
+            Write-Host $factList[0]
             Start-Sleep -Seconds 1
             Write-Host ""
             generateFact 
@@ -31,4 +33,12 @@ function generateFact() {
         }   
 }
 generateFact
+Write-Host $factList
+#>
 
+$factList = @()
+for ($i = 0; $i -le 11; $i ++) {
+    $newFact = Invoke-RestMethod -Uri $url -Method Get
+    $factList.appendChild($newFact)
+}
+Write-Host $factList
