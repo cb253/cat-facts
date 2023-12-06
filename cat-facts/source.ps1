@@ -11,7 +11,7 @@ Version 1.0+
 Production Began Dec 4, 2023 
 #>
 
-$url = "https://catfact.ninja/fact?max_length=140"
+$url = "https://catfact.ninja/fact?limit=1"
 Clear-Host
 Write-Host "Welcome to Cat Facts!"
 function generateFact() {
